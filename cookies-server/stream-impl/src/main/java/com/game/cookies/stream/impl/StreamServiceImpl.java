@@ -2,9 +2,10 @@ package com.game.cookies.stream.impl;
 
 import akka.NotUsed;
 import akka.stream.javadsl.Source;
-import com.lightbend.lagom.javadsl.api.ServiceCall;
 import com.game.cookies.hello.api.HelloService;
+import com.game.cookies.login.api.LoginService;
 import com.game.cookies.stream.api.StreamService;
+import com.lightbend.lagom.javadsl.api.ServiceCall;
 
 import javax.inject.Inject;
 
@@ -16,12 +17,14 @@ import static java.util.concurrent.CompletableFuture.completedFuture;
 public class StreamServiceImpl implements StreamService {
 
   private final HelloService helloService;
+    private final LoginService loginService;
   private final StreamRepository repository;
 
   @Inject
-  public StreamServiceImpl(HelloService helloService, StreamRepository repository) {
+  public StreamServiceImpl(HelloService helloService, StreamRepository repository, LoginService loginService) {
     this.helloService = helloService;
     this.repository = repository;
+      this.loginService = loginService;
   }
 
   @Override
